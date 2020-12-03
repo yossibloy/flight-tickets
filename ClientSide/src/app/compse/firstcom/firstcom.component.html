@@ -1,0 +1,108 @@
+<div class="container">
+    <h1 class="h"><b><u><i> טיסות בכיף</i></u></b></h1>
+    <a class="m" routerLink="management">ניהול הזמנה</a>
+
+
+  <!-- מספר נוסעים -->
+  <div class="b">
+    <b>?כמה נוסעים</b><br><br>
+
+    <div class="c">
+      <button class="material-icons" (click)="plusadult()">add</button>
+      <p style="color:#000;">{{this.svc.passengersadult}}</p>
+      <button class="material-icons" (click)="minusadult()"> remove</button>
+      <p>:מבוגרים</p>
+    </div>
+
+    <div class="c">
+      <button class="material-icons" (click)="plusyoung()">add</button>
+      <p style="color:#000;">{{this.svc.passengersyoung}}</p>
+      <button class="material-icons" (click)="minusyoung()"> remove</button>
+      <p>:צעירים</p>
+    </div>
+<p>% לצעירים יש הנחה של 50 *</p>
+  </div>
+
+
+
+  <!-- כפתורי רדיו -->
+
+  <div class="a">
+
+    <div class="form-check-inline">
+      <label class="form-check-label">
+        <input type="radio" #radio1 class="form-check-input" (click)="ischecked1()">  הלוך ושוב
+      </label>
+    </div>
+
+    <div class="form-check-inline">
+      <label class="form-check-label">
+        <input type="radio" #radio2 class="form-check-input" (click)="ischecked2()"> צד אחד   
+      </label>
+    </div>
+
+  </div>
+
+  <!-- חיפוש טיסות -->
+
+  <form [formGroup]="MyFormGrup" class="form-inline" action="/action_page.php">
+
+
+
+    <div *ngIf="radio1.checked==true" class="form-group">
+      <label for="example-date-input" class="col-2 col-form-label"></label>
+      <input class="form-control" type="date" id="example-date-input" formControlName="return">
+      <label>:תאריך חזור</label>
+      <errors [error]="MyFormGrup.controls.depart"></errors>
+    </div>
+
+    <div class="form-group">
+      <label for="example-date-input" class="col-2 col-form-label"></label>
+      <input class="form-control" type="date" id="example-date-input" formControlName="depart">
+      <label>:תאריך הלוך</label>
+      <errors [error]="MyFormGrup.controls.depart"></errors>
+    </div>
+
+
+
+    <div class="form-group">
+      <select class="form-control" id="sel1" formControlName="target" style="width: 200px;">
+        <option *ngFor="let coutr of countryList" [value]="coutr">
+          {{coutr}}
+        </option>
+      </select>
+      <label>יעד</label>
+      <img src="../../../assets/unnamed (3).png" alt="" >
+
+    </div>
+
+    <div class="form-group">
+      <select class="form-control" id="sel2" formControlName="origin" style="width: 200px;">
+        <option *ngFor="let coutr of countryList" [value]="coutr">
+          {{coutr}}
+        </option>
+      </select>
+      <label>מוצא</label>
+      <img src="../../../assets/unnamed (2).png" alt="" >
+    </div>
+    <br><br>
+
+    <!-- סיכום כמה נוסעים -->
+    <button style="background-color: cornflowerblue;" type="submit" (click)="click()" [disabled]="MyFormGrup.invalid" class="btn btn-secondary">חיפוש
+      טיסה
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+      </svg>
+    </button><br><br>
+    <b> מבוגרים: {{this.svc.passengersadult}}</b>
+    <b > צעירים: {{this.svc.passengersyoung}}</b>
+    <b > סה"כ נוסעים: {{this.svc.passengers}}</b>
+
+
+  </form>
+
+
+
+
+</div>

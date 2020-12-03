@@ -1,0 +1,101 @@
+<h1><u style="color: blue; font-size: xx-large; ">פרטי טיסה שבחרת</u></h1>
+
+
+<ditayls></ditayls>
+
+
+<div class="apdiv">
+
+    <h1><u style="color: blue;">אנא מלא את פרטיך</u></h1><br>
+    <h1 style="color: blue; font-size: initial;">  יש לכתוב שם ומשפחה אך ורק באנגלית בדיוק כפי שכתוב בדרכון *</h1>
+
+    <div class="divcon in">
+        <form [formGroup]="inviting" class="form-inline" action="/action_page.php">
+            <b style="color: blue;">פרטי מזמין ליצירת קשר</b><br>
+
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="g-mail" formControlName="email">
+                <label>כתובת אימייל</label>
+                <errors [error]="inviting.controls.email"></errors>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="phon Number" formControlName="phonNumber">
+
+                <label> :פלפון</label>
+
+                <errors [error]="inviting.controls.phonNumber"></errors>
+            </div>
+
+            <div class="form-group">
+                <input class="form-control" placeholder="last name" formControlName="lastname">
+                <label>:שם משפחה</label>
+                <errors [error]="inviting.controls.lastname"></errors>
+            </div>
+
+
+            <div class="form-group">
+                <input type="tel" class="form-control" placeholder="first_name" formControlName="firstname">
+                <label>:שם פרטי</label>
+                <errors [error]="inviting.controls.firstname"></errors>
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <form [formGroup]="MyFormEnrollment" class="form-inline" action="/action_page.php">
+        <div class="col-xs-12" formArrayName="formarr">
+
+            <div class="row" *ngFor="let p of svc.arr; let i = index" [formGroupName]="i">
+
+                <div class="divcon">
+                    <b>נוסע מספר {{p}}</b><br><br>
+
+                    <div class="form-group">
+                        <input class="form-control" placeholder="last name" formControlName="lastname">
+                        <label>:שם משפחה</label>
+                        <errors [error]='this.MyFormEnrollment.controls.formarr["controls"][i].controls.lastname'>
+                        </errors>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="first name" formControlName="firstname">
+                        <label>:שם פרטי</label>
+                        <errors [error]='this.MyFormEnrollment.controls.formarr["controls"][i].controls.firstname'>
+                        </errors>
+                    </div>
+                    <br><br>
+
+                    <div class="form-group">
+                        <select class="form-control" id="sel1" formControlName="sex">
+                            <option>male</option>
+                            <option>female</option>
+                        </select>
+                        <label>:מין</label>
+                        <errors [error]='this.MyFormEnrollment.controls.formarr["controls"][i].controls.sex'></errors>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="example-date-input" class="col-2 col-form-label"></label>
+                        <input class="form-control" type="date" value="2011-08-19" id="example-date-input"
+                            placeholder="date of birth" formControlName="birthDate">
+                        <label>:תאריך לידה</label>
+                        <errors [error]='this.MyFormEnrollment.controls.formarr["controls"][i].controls.birthDate'>
+                        </errors>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form><br><br>
+
+
+
+    <button class="btn btn-primary btn-lg " routerLink="../../upgrade" (click)="click()"
+        [disabled]="MyFormEnrollment.invalid">המשך</button><br><br>
+
+
+</div>

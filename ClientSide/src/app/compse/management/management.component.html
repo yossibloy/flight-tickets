@@ -1,0 +1,144 @@
+<div>
+    <br>
+    <h1 #sori class="sori" hidden><b>שם או מספר הזמנה אינם תקינים. אנא וודאו את תקינותם, ונסו שוב.</b></h1><br><br>
+</div>
+
+<form #form class="management" [formGroup]="managementFormGrup">
+    <div class="form-group">
+        <label>שם משפחה של מזמין</label>
+        <input class="form-control" id="cc-nm" type="text" formControlName="name">
+        <errors [error]="managementFormGrup.controls.name"></errors>
+    </div>
+
+    <div class="form-group">
+        <label>מספר הזמנה</label>
+        <input class="form-control" type="text" id="cc-OrderNumber" formControlName="OrderNumber">
+        <errors [error]="managementFormGrup.controls.OrderNumber"></errors>
+    </div>
+    <button style="background-color: chocolate;" class="btn btn-primary btn-lg btn-block"
+        (click)="management()">המשך</button>
+</form>
+
+
+
+<div class="dityls" #dityls hidden>
+
+
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a routerLink="">שינוי  טיסה </a></li>
+                <li><a href="../upgrade/">הוספת כבודה / ארוחה</a></li>
+                <li><a routerLink="checkin">צק אין</a></li>
+                <li><a href="#">דף הבית</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <h1 style="font-size: xx-large;" (click)="df()">פרטי טיסה </h1>
+    <div class="ff" #ff>
+        <div *ngFor="let i of this.svc.thisflighyt1">
+            <h1><b><u> טיסת הלוך</u></b></h1>
+            <label class="lebel"><span> {{ i.numFlyght }} </span>: מספר טיסה </label>
+            <label class="lebel"><span> {{ i.company }} </span> :חברת תעופה </label>
+            <label class="lebel"> <span> {{ i.duration }} </span>: משך טיסה </label>
+            <label class="lebel"><span> {{ i.landing }} </span>: שעת נחיתה </label>
+            <label class="lebel"><span> {{ i.takeoff }} </span>: שעת המראה </label>
+            <label class="lebel"><span> {{ i.depart }} </span>: תאריך המראה </label>
+            <label class="lebel"><span> {{ i.target }} </span>: יעד </label>
+            <label class="lebel"><span> {{ i.origin }} </span>: מוצא </label>
+        </div>
+        <br>
+        <div *ngFor="let i of this.svc.thisflighyt2">
+            <h1><b><u> טיסת חזור</u></b></h1>
+            <label class="lebel"><span> {{ i.numFlyght }} </span>: מספר טיסה </label>
+            <label class="lebel"><span> {{ i.company }} </span>: חברת תעופה </label>
+            <label class="lebel"><span> {{ i.duration }} </span>: משך טיסה </label>
+            <label class="lebel"><span> {{ i.landing }} </span>: שעת נחיתה </label>
+            <label class="lebel"><span> {{ i.takeoff }} </span>: שעת המראה </label>
+            <label class="lebel"><span> {{ i.depart }} </span>: תאריך המראה </label>
+            <label class="lebel"><span> {{ i.target }} </span>: יעד </label>
+            <label class="lebel"><span> {{ i.origin }} </span>: מוצא </label>
+
+        </div>
+    </div>
+
+
+
+    <h1 style="font-size: xx-large;"> פרטי נוסעים</h1>
+    <div *ngFor="let i of this.svc.passengersarr">
+
+        <div class="ff">
+            <div  style="display: flex; color: slateblue;" (click)="del(i.id)" >
+                <p >להסרת נוסע</p>
+                <svg  width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                    <path fill-rule="evenodd"
+                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                </svg>
+            </div>
+            <label> :תאריך לידה {{ i.birthDate }} </label>
+            <label> {{ i.lastname }} :שם משפחה </label>
+            <label> {{ i.firstname }} :שם פרטי </label>
+        </div>
+        <!-- <span class="tooltiptext">חשבונך יזוכהכ בהתאם לחוק הגנת הצרכן, ולפי תנאי שימוש האתר</span> -->
+        
+
+    </div><button style="width: 20%;margin: auto; margin-right: 90%;" class="btn btn-primary btn-lg btn-block" (click)="deli()">ביטול טיסה</button>
+    <br><button style="width: 20%;" (click)="add()" class=" btn-primary btn-lg btn-block">
+        הוספת נוסע
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+        </svg>
+    </button>
+
+
+    <form #addform  [formGroup]="addFormGrup" class="form-inline" action="/action_page.php" hidden>
+        <div class="divcon">
+
+            <div class="form-group">
+                <input class="form-control" placeholder="last name" formControlName="lastname">
+                <label>:שם משפחה</label>
+                <errors [error]='this.addFormGrup.controls.lastname'></errors>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="first name" formControlName="firstname">
+                <label>:שם פרטי</label>
+                <errors [error]='this.addFormGrup.controls.firstname'></errors>
+            </div>
+            <br><br>
+
+            <div class="form-group">
+                <select class="form-control" id="sel1" formControlName="sex">
+                    <option>male</option>
+                    <option>female</option>
+                </select>
+                <label>:מין</label>
+                <errors [error]='this.addFormGrup.controls.sex'></errors>
+            </div>
+
+
+            <div class="form-group">
+                <label for="example-date-input" class="col-2 col-form-label"></label>
+                <input class="form-control" type="date" value="2011-08-19" id="example-date-input"
+                    placeholder="date of birth" formControlName="birthDate">
+                <label>:תאריך לידה</label>
+                <errors [error]='this.addFormGrup.controls.birthDate'></errors>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-lg " routerLink="../flit/enrollment/Payment"  (click)="clickadd()"
+        [disabled]="addFormGrup.invalid">המשך</button><br><br>
+    </form><br><br>
+
+
+
+</div>

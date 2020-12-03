@@ -1,0 +1,10 @@
+
+<div *ngIf="error.touched ==true">
+    <div class="err"
+         *ngFor="let i of error.errors | keyvalue" [ngSwitch]="i.key">
+        <span *ngSwitchCase="'pattern'">תוכן לא תקין</span>
+        <span *ngSwitchCase="'required'">שדה חובה</span>
+        <span *ngSwitchCase="'minLength'">erger</span>
+        <span *ngSwitchCase="'email'">מייל אינו תקין </span>
+    </div>
+</div>

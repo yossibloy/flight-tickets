@@ -1,0 +1,58 @@
+.h{ 
+     text-align: center;
+  font-size: 50px;
+  color: blue;
+  padding-top:100px;
+}
+.form-inline{
+    text-align: center;
+    color: blue;
+    box-shadow: rgb(133, 202, 224) 3px 3px 3px 3px;
+    border-radius: 15px;
+    margin-top:20px ;
+    margin-bottom: 20px;
+    padding-top: 10px;
+display: block;
+}
+.a{
+display: flex;
+justify-content: space-between;
+width: 150px;
+  margin-left :80% ;
+  color: blue;
+}
+.form-control{
+  margin:  5px;
+}
+.b{
+  margin-left :60% ;
+  color: blue;
+  width: 180px;
+  text-align: center;
+
+}
+.c{
+  display:flex;
+  border: solid 2px blue;
+  /* border-radius: 15px; */
+
+padding: 10px;
+
+}
+.material-icons{
+  border: solid 2px blue;
+  border-radius: 15px;
+
+color: #000;
+margin:  5px;
+}
+.form-group{
+  margin: 15px;
+}
+.m{
+  margin-right: 900px;
+}
+.container{
+  width:70%;
+}
+

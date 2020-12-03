@@ -1,0 +1,36 @@
+.div1{
+    border-radius: 15px;
+    height: 30%;
+   
+    box-shadow: teal 3px 3px 3px 3px;
+
+}
+.innerdiv{
+    margin:auto ;
+    padding: 15px;
+    box-shadow: teal 3px 3px 3px 3px;
+    border-radius: 15px;
+    font-size: x-large;
+}
+.div2{
+        display: flex;
+
+}
+.bthh{
+    border: solid teal 3px;
+    border-radius: 5px;
+    background-color: mediumseagreen;    width: 30%;
+
+}
+.btn{
+    margin: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.appdiv{
+    width: 50%;
+margin: auto;
+margin-top: 10%;
+}
+
+

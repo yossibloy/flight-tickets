@@ -1,0 +1,88 @@
+<div #appdiv style="color: crimson;">
+<h1>צק-אין</h1>
+<h2>אנא הוסף את הפרטים החסרים</h2>
+
+
+<form [formGroup]="MyCheckIn" class="form-inline" action="/action_page.php">
+    <div class="col-xs-12" formArrayName="formarr">
+
+        <div class="row" *ngFor="let p of svc.arr; let i = index" [formGroupName]="i">
+
+            <div class="divcon">
+                <b>נוסע מספר {{p}}</b><br><br>
+
+                <div class="form-group">
+                    <input class="form-control" placeholder="last name" formControlName="lastname">
+                    <label>:שם משפחה</label>
+                    <errors [error]='this.MyCheckIn.controls.formarr["controls"][i].controls.lastname'></errors>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="first name" formControlName="firstname">
+                    <label>:שם פרטי</label>
+                    <errors [error]='this.MyCheckIn.controls.formarr["controls"][i].controls.firstname'></errors>
+                </div>
+                <br><br>
+
+                <div class="form-group">
+                    <select class="form-control" id="sel1" formControlName="sex">
+                        <option>male</option>
+                        <option>female</option>
+                    </select>
+                    <label>:מין</label>
+                    <errors [error]='this.MyCheckIn.controls.formarr["controls"][i].controls.sex'></errors>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="example-date-input" class="col-2 col-form-label"></label>
+                    <input  class="form-control" type="date" value="2011-08-19" id="example-date-input"
+                        placeholder="date of birth" formControlName="birthDate">
+                    <label>:תאריך לידה</label>
+                    <errors [error]='this.MyCheckIn.controls.formarr["controls"][i].controls.birthDate'></errors>
+                </div>
+
+
+                <div class="form-group">
+                    <input  class="form-control"  
+                        placeholder="pasport number" formControlName="passnum">
+                    <label>מספר דרכון</label>
+                    <errors [error]='this.MyCheckIn.controls.formarr["controls"][i].controls.passnum'></errors>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="example-date-input" class="col-2 col-form-label"></label>
+                    <input  class="form-control" type="date" value="2011-08-19" id="example-date-input"
+                        placeholder="date of expiration" formControlName="expiration">
+                    <label>תאריך פקיעת תוקף של דרכון</label>
+                    <errors [error]='this.MyCheckIn.controls.formarr["controls"][i].controls.expiration'></errors>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div> 
+</form><br><br>
+<p>...שים לב שכל הפרטים מדוייקים</p>
+<button class="btn btn-primary btn-lg " (click) ="click()"
+[disabled]="MyCheckIn.invalid">לחץ לביצוע צק אין</button><br><br>
+
+</div>
+
+<div #bottondiv hidden>
+<div style="    border : solid 3px seagreen;
+    border-radius: 15px;
+    color: steelblue;
+    width: 30%;  
+      margin: auto;
+">
+<h1>צק אין בוצע בהצלחה</h1>
+
+</div>
+</div>
+
+<a href="">דף הבית</a>

@@ -1,0 +1,96 @@
+<div class="appdetails">
+
+    <div *ngIf= "this.svc.conditions2.length !=0" class="details">
+        <h1><u style="color: blue;">טיסת חזור</u></h1>
+        <label class="lebel"> {{this.svc.thisflighyt2[2]}}:יעד</label>
+        <img src="../../../assets/unnamed (3).png" alt="" >
+
+        <label class="lebel"> {{this.svc.thisflighyt2[1]}} :מוצא</label>
+        <img src="../../../assets/unnamed (2).png" alt="" >
+
+        <label class="lebel">שעת המראה: {{this.svc.thisflighyt2[7]}}</label>
+        <label class="lebel">תאריך המראה: {{this.svc.thisflighyt2[3]}}</label>
+        <label class="lebel">{{this.svc.thisflighyt2[5]}}:חברת תעופה </label>
+        <label class="lebel">משך טיסה: {{this.svc.thisflighyt2[6]}}</label>
+        <label class="lebel">שעת נחיתה: {{this.svc.thisflighyt2[8]}}</label>
+        <label class="lebel">מחיר )סה"כ) <u style="color: blue;" > {{this.svc.thisflighyt2[10]}}</u>
+        
+        
+            <button class="btn btn-info " data-toggle="modal" data-target="#myModal">פירוט</button>
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">
+
+                                <label>מחיר צעיר: <b style="color: blue;">$ {{this.svc.thisflighyt2[4] /2}} </b></label><br>
+                                <label> כפול <b style="color: blue;"> {{this.svc.passengersyoung}}</b> צעירים
+                                </label><br>
+                                <label>מחיר מבוגר: <b style="color: blue;">$ {{this.svc.thisflighyt2[4]}} </b></label><br>
+                                <label>כפול <b style="color: blue;"> {{this.svc.passengersadult}}</b> מבוגרים
+                                </label><br>
+                                <label>סך הכל:<b style="color: blue;">$ {{this.svc.thisflighyt2[10]}} </b></label>
+
+                            </h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </label>
+        <label class="lebel">מספר טיסה: {{this.svc.thisflighyt2[0]}}</label>
+    </div>
+
+
+    <div class="details" *ngIf= "this.svc.conditions.length !=0">
+        <h1><u style="color: blue;">טיסת הלוך </u></h1>
+        <label class="lebel"> {{this.svc.thisflighyt1[2]}}:יעד</label>
+        <img src="../../../assets/unnamed (3).png" alt="" >
+
+        <label class="lebel"> {{this.svc.thisflighyt1[1]}} :מוצא</label>
+        <img src="../../../assets/unnamed (2).png" alt="" >
+        <label class="lebel">שעת המראה: {{this.svc.thisflighyt1[7]}}</label>
+        <label class="lebel">תאריך המראה: {{this.svc.thisflighyt1[3]}}</label>
+        <label class="lebel">{{this.svc.thisflighyt1[5]}}:חברת תעופה </label>
+        <label class="lebel">משך טיסה: {{this.svc.thisflighyt1[6]}}</label>
+        <label class="lebel">שעת נחיתה: {{this.svc.thisflighyt1[8]}}</label>
+        <label class="lebel">מחיר (סה"כ)<u style="color: blue;" > {{this.svc.thisflighyt1[10]}}</u>
+        
+            <button class="btn btn-info " data-toggle="modal" data-target="#myModal">פירוט</button>
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">
+
+                                <label>מחיר צעיר: <b style="color: blue;">$ {{this.svc.thisflighyt1[4]/2}} </b></label><br>
+                                <label> כפול <b style="color: blue;"> {{this.svc.passengersyoung}}</b> צעירים
+                                </label><br>
+                                <label>מחיר מבוגר: <b style="color: blue;">$ {{this.svc.thisflighyt1[4]}} </b></label><br>
+                                <label>כפול <b style="color: blue;"> {{this.svc.passengersadult}}</b> מבוגרים
+                                </label><br>
+                                <label>סך הכל:<b style="color: blue;">$ {{this.svc.thisflighyt1[10]}} </b></label>
+
+                            </h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        
+        
+        
+        </label>
+        <label class="lebel">מספר טיסה: {{this.svc.thisflighyt1[0]}}</label>
+    </div>
+</div>
+

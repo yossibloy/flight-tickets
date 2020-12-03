@@ -1,0 +1,75 @@
+<div class="container">
+
+
+
+  <div class="col-md-8 order-md-1">
+
+
+    <form class="needs-validation" [formGroup]="pymentFormGrup" novalidate>
+
+      <h1><u class="mb-3">תשלום</u></h1>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="cc-name">שם בעל החשבון</label>
+          <input type="text" class="form-control" id="cc-nam" formControlName="name"
+            placeholder="אנא הכנס שם בעל החשבון">
+          <errors [error]="pymentFormGrup.controls.name"></errors>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="cc-number">מספר כרטיס אשראי</label>
+          <input type="password" class="form-control" id="cc-number" formControlName="cardNam"
+            placeholder="45**************">
+          <errors [error]="pymentFormGrup.controls.cardNam"></errors>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <label for="example-month-input" class="col-2 col-form-label">תוקף</label>
+          <input class="form-control" type="month" value="2011-08" id="example-month-input" formControlName="expiry"
+            placeholder="">
+          <errors [error]="pymentFormGrup.controls.expiry"></errors>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <label for="cc-cvv">ספרות בגב הכרטיס 3</label>
+          <input type="password" class="form-control" id="cc-cvv" formControlName="cvv" placeholder="***">
+          <errors [error]="pymentFormGrup.controls.cvv"></errors>
+        </div>
+
+      </div><br>
+      <button class="btn btn-primary btn-lg btn-block" [disabled]="pymentFormGrup.invalid" (click)="pyment()">תשלום</button>
+    </form>
+  </div>
+
+  <div style="font-size: x-large; color: brown; height: 80%; margin-top: 10%;">
+  <span *ngIf= "this.svc.conditions.length !=0"> <label >{{this.svc.thisflighyt1[10]}}</label> סה"כ מחיר טיסה הלוך</span> <br>
+   <span *ngIf= "this.svc.conditions2.length !=0">  <label >{{this.svc.thisflighyt2[10]}}</label>סה"כ מחיר טיסה חזור</span> <br>
+   <span *ngIf= "this.svc.sumprycebaggage !=0"> <label > {{this.svc.sumprycebaggage}}</label>  סה"כ מחיר תוספות וכבודה </span><br>
+
+    <label > {{summary}}  </label><span> סך הכל לתשלום</span> <br>
+   </div>
+</div>
+
+
+
+
+<ditayls ></ditayls>
+
+<br><br>
+
+<div #ispyment hidden>
+<div class="pyment" >
+  <h1 >!תשלום בוצע בהצלחה</h1><br>
+  <h3><b> {{this.svc.OrderNumber}}</b> - מספר הזמנה שלך </h3><br>
+<h4>...אנא זכור אותו</h4>
+</div>
+</div>
+
+<div >
+  <a style="margin-left: 10px;" routerLink="../../../management">ניהול הזמנה</a>
+  <a href="">דף הבית</a>
+</div>
+

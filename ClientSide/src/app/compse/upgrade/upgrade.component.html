@@ -1,0 +1,81 @@
+<div class="appdiv">
+  <h1><b style="color:maroon;">...שדרגו את הטיסה שלכם כעת! בהמשך זה יהיה יקר יותר</b></h1><br>
+  <div class="div1">
+    <h1  style="color:maroon;">הוספת כבודה</h1>
+    <div class="div2">
+      <div class="innerdiv">
+        <section class="innerdiv">kg 32
+          <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-briefcase-fill" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z" />
+            <path fill-rule="evenodd"
+              d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5v1.384l-7.614 2.03a1.5 1.5 0 0 1-.772 0L0 5.884V4.5zm5-2A1.5 1.5 0 0 1 6.5 1h3A1.5 1.5 0 0 1 11 2.5V3h-1v-.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5V3H5v-.5z" />
+          </svg>
+        </section><br>{{numbaggage32.pryce }} $<br><br>
+        <button class="bthh" (click)="plus32()">+</button>
+        {{numbaggage32.number}}
+        <button class="bthh" (click)="minus32()"> - </button>
+      </div>
+
+
+      <div class="innerdiv">
+        <section class="innerdiv">kg 20
+          <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-handbag-fill" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M8 1a2 2 0 0 0-2 2v2H5V3a3 3 0 0 1 6 0v2h-1V3a2 2 0 0 0-2-2zM5 5H3.361a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.356a2.5 2.5 0 0 0 2.472-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5H11v1.5a.5.5 0 0 1-1 0V5H6v1.5a.5.5 0 0 1-1 0V5z" />
+          </svg>
+
+        </section><br>{{numbaggage20.pryce }} $<br><br>
+        <button class="bthh" (click)="plus20()">+</button>
+        {{numbaggage20.number}}
+        <button class="bthh" (click)="minus20()">- </button>
+      </div>
+
+      <div class="innerdiv">
+        <section class="innerdiv">kg 10
+          <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-bag-fill" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M8 1a2.5 2.5 0 0 0-2.5 2.5V4h5v-.5A2.5 2.5 0 0 0 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
+          </svg>
+        </section><br>{{numbaggage10.pryce }} $<br><br>
+        <button class="bthh" (click)="plus10()">+</button>
+        {{numbaggage10.number}}
+        <button class="bthh" (click)="minus10()">- </button>
+      </div>
+    </div><br>
+    <label>סך הכל לתשלום</label>
+    <p style="font-size: x-large;">{{ this.svc.sumprycebaggage }} </p>
+  </div><br><br>
+
+
+  <div class="div1 ae">
+    <div style="display: flex; justify-content: space-between; width: 30% ; padding: 10px;;margin: auto; margin-top: 15px;">
+      <h1  style="color:maroon;">(חינם) הוספת ארוחה</h1>
+      <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-inboxes-fill" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M4.98 1a.5.5 0 0 0-.39.188L1.54 5H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0A.5.5 0 0 1 10 5h4.46l-3.05-3.812A.5.5 0 0 0 11.02 1H4.98zM3.81.563A1.5 1.5 0 0 1 4.98 0h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 10H1.883A1.5 1.5 0 0 1 .394 8.686l-.39-3.124a.5.5 0 0 1 .106-.374L3.81.563zM.125 11.17A.5.5 0 0 1 .5 11H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0 .5.5 0 0 1 .5-.5h5.5a.5.5 0 0 1 .496.562l-.39 3.124A1.5 1.5 0 0 1 14.117 16H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393z" />
+      </svg>
+      <svg width="2em" height="2.0625em" viewBox="0 0 16 17" class="bi bi-cup-straw" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M13.964 1.18a.5.5 0 0 1-.278.65l-2.255.902-.462 2.08c.375.096.714.216.971.368.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.955 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 6.132A.78.78 0 0 1 3.5 6c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 4.614 6.867 4.5 8 4.5c.712 0 1.389.045 1.985.127l.527-2.37a.5.5 0 0 1 .302-.355l2.5-1a.5.5 0 0 1 .65.279zM9.768 5.608A13.991 13.991 0 0 0 8 5.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 6c.146.073.362.15.648.222C5.967 6.39 6.924 6.5 8 6.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756a5.513 5.513 0 0 0 1.325-.297l-.845 8.03c-.013.12-.06.185-.102.214-.357.249-1.167.69-2.438.69-1.27 0-2.08-.441-2.438-.69-.041-.029-.09-.094-.102-.214l-.845-8.03c.137.046.283.088.435.126.774.194 1.817.308 2.95.308.742 0 1.445-.049 2.06-.137zm-5.593-1.48s.003.002.005.006l-.005-.006zm7.066 0l-.005.006a.026.026 0 0 1 .005-.006zM11.354 6a3.282 3.282 0 0 1-.703.235l.1-.446c.264.069.464.142.603.211z" />
+      </svg>
+    </div>
+    <div class="form-group">
+      <select class="form-control" id="sel1" style="width: 200px; margin: auto;">
+        <option>ארוחה רגילה</option>
+        <option>ארוחה עסקית</option>
+        <option>ארוחה כשרה</option>
+      </select>
+    </div>
+  </div>
+  <br>
+  <button *ngIf="this.svc.conditions.length !=0" class="btn btn-primary btn-lg "
+    routerLink="../flit/enrollment/Payment">לא, תודה</button>
+  <button class="btn btn-primary btn-lg " [disabled]="this.svc.sumprycebaggage == 0"
+    routerLink="../flit/enrollment/Payment">עבור לתשלום</button>
+</div>

@@ -1,0 +1,23 @@
+
+.appdetails{
+    display: flex;
+    width: 70%;
+    margin: auto;
+   
+  }
+  .details{
+    border : solid 3px seagreen;
+    border-radius: 15px;
+
+    width: 30%;
+    color: steelblue;
+    margin: auto;
+
+}
+
+.lebel{
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    
+}

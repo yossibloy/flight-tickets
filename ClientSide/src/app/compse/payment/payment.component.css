@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+
+
+    margin: auto;
+    text-align: center;
+    color:darkblue;
+    border: solid 2px darkblue;
+    border-radius: 15px;
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 30px;
+}
+
+.pyment{
+    color:blue;
+    border: solid 2px darkblue;
+    border-radius: 15px;
+
+padding: 10px;
+display: block;
+width: 500px;
+margin: auto;
+text-align: center;
+}
+

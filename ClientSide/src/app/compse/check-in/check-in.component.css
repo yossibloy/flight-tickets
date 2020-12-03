@@ -1,0 +1,47 @@
+
+
+.apdiv{
+    text-align: center;
+    color: steelblue;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border : solid 3px seagreen;
+    border-radius: 15px;
+
+    width: 70%;
+    height: 100%;
+    overflow:auto;
+
+}
+.divcon{
+    padding: 10px;
+    width: 70%;
+    border : solid 3px seagreen;
+    border-radius: 15px;
+
+    margin: auto;
+    margin-top: 30px;
+   
+
+}
+.form-group{
+    padding: 10px;
+}
+.form-control{
+    margin:  5px;
+}
+
+
+
+.btn{
+   width: 40%;
+margin: auto;
+margin-top: 15px;
+}
+
+
+
+.in{
+    width: 85%
+}

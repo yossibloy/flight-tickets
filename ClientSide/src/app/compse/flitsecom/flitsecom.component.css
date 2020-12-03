@@ -1,0 +1,59 @@
+.condiv{
+    text-align: center;
+    margin: auto;
+    color: blue;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 70%;
+    height: 90%;
+    border: solid 2px red;
+    border-radius: 15px;
+
+    overflow:auto;
+
+
+}
+
+.card{
+    display: flex;
+    border-radius: 15px;
+    box-shadow: red 2px 2px 2px 2px;
+
+    height: 100px;
+    width: 800px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+} 
+
+.form-group{
+    padding: 10px;
+}
+.sori{
+    size: 70px;
+    border: solid 2px red;
+    border-radius: 15px;
+
+    padding: 20px;
+width: 80%;
+margin: auto;
+
+
+}
+
+ .bh{
+    width: 60%;
+    border-radius: 15px;
+
+    background-color:cyan;
+color: blue;
+font-size: 50px;
+}
+
+.ss{
+    box-shadow: forestgreen 2px 2px 2px 2px;
+
+}
+
+

@@ -1,0 +1,45 @@
+        
+        <label class="lebel">שעת נחיתה: <span>{{obg.landing}}</span></label>
+        <label class="lebel">שעת המראה: <span>{{obg.takeoff}}</span></label>
+        <label class="lebel">תאריך המראה: <span>{{obg.depart}}</span></label>
+        <img src="../../../assets/unnamed (3).png" alt="" >
+
+        <label class="lebel"> <span> {{ obg.target }} </span> :יעד</label>
+        <img src="../../../assets/unnamed (2).png" alt="" >
+        <label class="lebel"> <span>{{obg.origin }} </span> :מוצא</label>
+
+        <label class="lebel">מספר טיסה: <span>{{obg.numFlyght}}</span></label>
+        <label class="lebel">מחיר (סה"כ) <span>{{obg.priceglobal}}</span>
+
+
+
+            <button class="btn btn-info" data-toggle="modal" data-target="#myModal">פירוט</button>
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">
+
+                                <label>מחיר צעיר: <u style="color: blue;">${{obg.prise /2}}  </u></label><br>
+                                <label> כפול <u style="color: blue;"> {{this.svc.passengersyoung}}</u> צעירים
+                                </label><br>
+                                <label>מחיר מבוגר: <u style="color: blue;">$  {{obg.prise}}</u></label><br>
+                                <label>כפול <u style="color: blue;"> {{this.svc.passengersadult}}</u> מבוגרים
+                                </label><br>
+                                <label>סך הכל:<u style="color: blue;">$ {{obg.priceglobal}} </u></label>
+
+                            </h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </label>
+        <label class="lebel"> <span>{{ obg.company }} </span> :חברת תעופה</label>
+        <label class="lebel">משך טיסה: <span>{{obg.duration}}</span></label>
+
+
