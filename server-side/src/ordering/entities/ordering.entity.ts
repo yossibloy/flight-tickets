@@ -18,9 +18,11 @@ export class Ordering {
     @Column()
     email:string
 
-    @Column()
+    @Column({nullable:true})
     OrderNumber:string
 
+    @Column({nullable:true})
+    roles:string
 
 
     // @OneToMany(()=> Passenger,passenger => passenger.OrderNumber)

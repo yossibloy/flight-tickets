@@ -1,9 +1,12 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query, SetMetadata, UseGuards } from '@nestjs/common';
 import { OrderingService } from './ordering.service';
 import { CreateOrderingDto } from './dto/create-ordering.dto';
 import { UpdateOrderingDto } from './dto/update-ordering.dto';
+import { GurdGuard } from './gurd.guard';
+import { receiveMessageOnPort } from 'worker_threads';
 
 @Controller('ordering')
+@UseGuards(GurdGuard)
 export class OrderingController {
   constructor(private readonly orderingService: OrderingService) { }
 
@@ -13,9 +16,18 @@ export class OrderingController {
   }
 
 
-  @Get()
-  findFlightsgo(@Query() qq) {
+
+  @Get()  
+  findFlightsgo(@Query() qq ) { 
     return this.orderingService.findOne(qq);
+  }
+
+  @Get("Meneger") 
+  // @SetMetadata('roles', ['admin']) 
+  sighnMeneger(@Body() b ) {    
+    console.log("sss",b);
+     
+    return null;
   }
 
   @Delete('Delete/:num')

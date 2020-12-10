@@ -7,6 +7,7 @@ import { PaymentComponent } from './compse/payment/payment.component';
 import { ManagementComponent } from './compse/management/management.component';
 import { UpgradeComponent } from './compse/upgrade/upgrade.component';
 import { CheckInComponent } from './compse/check-in/check-in.component';
+import { MenegerComponent } from './compse/meneger/meneger.component';
 
 
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: '', component: FirstcomComponent},
   { path: 'flit', component: FlitsecomComponent },
   { path: 'management', component: ManagementComponent },
+  { path: 'meneger', component: MenegerComponent },
   { path: 'flit/enrollment', component: EnrollmentComponent } ,
   { path: 'flit/enrollment/Payment', component: PaymentComponent } ,
   { path: 'upgrade', component: UpgradeComponent } ,

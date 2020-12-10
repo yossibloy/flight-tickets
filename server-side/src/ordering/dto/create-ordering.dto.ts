@@ -11,4 +11,5 @@ export class CreateOrderingDto {
 
     OrderNumber?:string
 
+    roles?:string
 }

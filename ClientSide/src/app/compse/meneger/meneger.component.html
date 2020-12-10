@@ -1,0 +1,16 @@
+<p>meneger works!</p>
+<form #form class="management" [formGroup]="menegerFormGrup">
+    <div class="form-group">
+        <label>שם מנהל</label>
+        <input class="form-control" id="cc-nm" type="text" formControlName="name">
+        <errors [error]="menegerFormGrup.controls.name"></errors>
+    </div>
+
+    <div class="form-group">
+        <label>סיסמה</label>
+        <input class="form-control" type="text" id="cc-OrderNumber" formControlName="password">
+        <errors [error]="menegerFormGrup.controls.password"></errors>
+    </div>
+    <button style="background-color: chocolate;" class="btn btn-primary btn-lg btn-block"
+        (click)="meneger()">היכנס</button>
+</form>

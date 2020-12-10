@@ -17,6 +17,7 @@ import { FlightdetailsComponent } from './compse/flightdetails/flightdetails.com
 import { ManagementComponent } from './compse/management/management.component';
 import { UpgradeComponent } from './compse/upgrade/upgrade.component';
 import { CheckInComponent } from './compse/check-in/check-in.component';
+import { MenegerComponent } from './compse/meneger/meneger.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CheckInComponent } from './compse/check-in/check-in.component';
     ManagementComponent,
     UpgradeComponent,
     CheckInComponent,
+    MenegerComponent,
   ],
   imports: [
     BrowserModule,

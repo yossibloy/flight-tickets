@@ -18,6 +18,7 @@ export class OrderingService {
       passenger.email = createOrderingDto.email
       passenger.phonNumber = createOrderingDto.phonNumber 
       passenger.OrderNumber = createOrderingDto.OrderNumber 
+      passenger.roles = createOrderingDto.roles 
     
       await this.repo.save(passenger)
     }
