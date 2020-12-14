@@ -17,3 +17,15 @@
 .form-control{
     margin:  5px;
 }
+
+.navdiv{
+    width: 50%;
+    margin: auto;
+}
+.ulbut{   
+     display: flex;
+ justify-content: space-between;
+ 
+    margin-top: 30%;
+
+}

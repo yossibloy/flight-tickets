@@ -13,9 +13,11 @@ export class MyserviceService {
  getdb(url:string,q):Observable<any> {
   return this.http.get(url+q)
 }
- getdbb(url:string,b):Observable<any> {
-  return this.http.get(url,b)
+
+ getalldb(url:string):Observable<any> {
+  return this.http.get(url)
 }
+
  postdb(url:string,b):Observable<any> {
   return this.http.post(url,b)
 }

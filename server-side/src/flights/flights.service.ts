@@ -14,6 +14,9 @@ export class FlightsService {
   findOne(q) {
     return this.repo.find({ where: { origin: q.origin, target: q.target, depart: q.depart } });;
   }
+  findall() {
+    return this.repo.find();
+  }
 
   findOnebyid(id) {
     return this.repo.find({ where: { numFlyght: id} });;

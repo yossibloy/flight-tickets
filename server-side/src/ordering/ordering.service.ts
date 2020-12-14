@@ -23,7 +23,9 @@ export class OrderingService {
       await this.repo.save(passenger)
     }
 
-
+    findall(){
+      return this.repo.find()
+    }
     findOne(q) {
       return this.repo.find({ where: { lastname: q.name, OrderNumber: q.OrderNumber } });;
     }

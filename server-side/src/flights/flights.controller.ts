@@ -13,6 +13,11 @@ export class FlightsController {
   findFlights(@Query() qq: object) {
     return this.flightsService.findOne(qq);
   }
+
+  @Get("all")
+  findallFlights( ) {
+    return this.flightsService.findall();
+  }
  
 
   @Get(':id')

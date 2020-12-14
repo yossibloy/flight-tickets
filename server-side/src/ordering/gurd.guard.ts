@@ -12,7 +12,7 @@ export class GurdGuard implements CanActivate {
     if (!roles) {
       return true;
     }
-    const request = context.switchToHttp().getRequest().body.roles;
+    const request = context.switchToHttp().getRequest().query.roles;
     console.log(request,roles,roles == request);
     
     return roles == request

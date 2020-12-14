@@ -21,13 +21,15 @@ export class OrderingController {
   findFlightsgo(@Query() qq ) { 
     return this.orderingService.findOne(qq);
   }
+  @Get("all")  
+  findallorders()  { 
+    return this.orderingService.findall();
+  }
 
   @Get("Meneger") 
-  // @SetMetadata('roles', ['admin']) 
-  sighnMeneger(@Body() b ) {    
-    console.log("sss",b);
-     
-    return null;
+  @SetMetadata('roles', 'admin') 
+  sighnMeneger(@Query() b ) {         
+    return b;
   }
 
   @Delete('Delete/:num')

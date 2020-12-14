@@ -1,4 +1,3 @@
-<p>meneger works!</p>
 <form #form class="management" [formGroup]="menegerFormGrup">
     <div class="form-group">
         <label>שם מנהל</label>
@@ -14,3 +13,23 @@
     <button style="background-color: chocolate;" class="btn btn-primary btn-lg btn-block"
         (click)="meneger()">היכנס</button>
 </form>
+<div class="navdiv" #div hidden>
+
+ 
+            <ul #nav hidden class="ulbut">
+                <button type="button" class="btn btn-primary" (click)="getAllFliyts()">קבלת כל הטיסות</button>
+                <button type="button" class="btn btn-primary" (click)="getPassengersByNum()">קבלת נוסעים לפי מספר הזמנה</button>
+                <button type="button" class="btn btn-primary" (click)="getAllOrders()">קבלת כל מזמינים</button>
+                <button type="button" class="btn btn-primary" (click)="getOrdersByNum()">קבלת המזמינים לפי מספר הזמנה</button>
+                <button type="button" class="btn btn-primary" (click)="addFliyts()">הוספת טיסה</button>
+                <button type="button" class="btn btn-primary" (click)="updetFliyts()">שינוי טיסה</button>
+                <button type="button" class="btn btn-primary" (click)="deleteFliyts()">ביטול טיסה</button>
+
+            </ul>
+
+
+</div>
+
+
+
+<!-- <div #err hidden>errerrerrerrerrerrerrerrerrerrerrerrerrerrerrerrerrerrerrerr</div> -->
