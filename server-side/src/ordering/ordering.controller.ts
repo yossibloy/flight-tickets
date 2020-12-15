@@ -5,8 +5,8 @@ import { UpdateOrderingDto } from './dto/update-ordering.dto';
 import { GurdGuard } from './gurd.guard';
 import { receiveMessageOnPort } from 'worker_threads';
 
-@Controller('ordering')
 @UseGuards(GurdGuard)
+@Controller('ordering')
 export class OrderingController {
   constructor(private readonly orderingService: OrderingService) { }
 

@@ -37,37 +37,45 @@ export class ManagementComponent implements OnInit {
 
 
   management() {
-this.svc.OrderNumber = this.managementFormGrup.value.OrderNumber
-console.log(this.svc.OrderNumber);
-this.svc.passengersarr = []
+    this.svc.OrderNumber = this.managementFormGrup.value.OrderNumber
+    console.log(this.svc.OrderNumber);
+    this.svc.passengersarr = []
     this.svc.getdb("http://localhost:3000/ordering",
       `?name=${this.managementFormGrup.value.name}&&OrderNumber=${this.managementFormGrup.value.OrderNumber}`)
       .subscribe((res) => {
+        localStorage.setItem("token",res[0].token)        
         if (res == false) {
           this.sori.nativeElement.hidden = false
         }
         else {
-          this.sori.nativeElement.hidden = true
-          this.form.nativeElement.hidden = true
-          this.dityls.nativeElement.hidden = false
+          this.svc.getdb("http://localhost:3000/ordering/Meneger", `?roles=${res[0].roles}`).subscribe((r) => {
+            this.router.navigate(['/meneger'])
+            return
+          }, error => {
+            console.error(error.error.message);
 
-          this.svc.getdb("http://localhost:3000/passengers",
-            `?OrderNumber=${this.managementFormGrup.value.OrderNumber}`)
-            .subscribe((res) => {
-              this.svc.passengersarr.push(...res)
-              this.array()
+            this.sori.nativeElement.hidden = true
+            this.form.nativeElement.hidden = true
+            this.dityls.nativeElement.hidden = false
 
-              this.svc.getdb("http://localhost:3000/flights/", this.svc.passengersarr[0].flighitNumber1)
-                .subscribe((res) => {
-                  this.svc.thisflighyt1 = res;
-                }
-                )
-              this.svc.getdb("http://localhost:3000/flights/", this.svc.passengersarr[0].flighitNumber2)
-                .subscribe((res) => this.svc.thisflighyt2 = res)
-            })
+            this.svc.getdb("http://localhost:3000/passengers",
+              `?OrderNumber=${this.managementFormGrup.value.OrderNumber}`)
+              .subscribe((res) => {
+                this.svc.passengersarr.push(...res)
+                this.array()
+
+                this.svc.getdb("http://localhost:3000/flights/", this.svc.passengersarr[0].flighitNumber1)
+                  .subscribe((res) => {
+                    this.svc.thisflighyt1 = res;
+                  }
+                  )
+                this.svc.getdb("http://localhost:3000/flights/", this.svc.passengersarr[0].flighitNumber2)
+                  .subscribe((res) => this.svc.thisflighyt2 = res)
+              })
+          }
+          )
         }
       })
-      
   }
 
 
@@ -113,12 +121,12 @@ this.svc.passengersarr = []
     this.ff.nativeElement.hidden = false
   }
 
-  
-deli(){  
-  if (confirm('האם הינך בטוח שאתה רוצה לבטל טיסה זו? \n לאחר מכן לא תוכל להתחרט...')) {
 
-  this.svc.delete(`http://localhost:3000/passengers/Delete/${this.svc.OrderNumber}`).subscribe(()=>console.log("fdffffffffffffffffffffff"))
-  this.svc.delete(`http://localhost:3000/ordering/Delete/${this.svc.OrderNumber}`).subscribe(()=>console.log("fdfdfffffffffffffffffffffffffffffff"))
-}
-}
+  deli() {
+    if (confirm('האם הינך בטוח שאתה רוצה לבטל טיסה זו? \n לאחר מכן לא תוכל להתחרט...')) {
+
+      this.svc.delete(`http://localhost:3000/passengers/Delete/${this.svc.OrderNumber}`).subscribe(() => console.log("fdffffffffffffffffffffff"))
+      this.svc.delete(`http://localhost:3000/ordering/Delete/${this.svc.OrderNumber}`).subscribe(() => console.log("fdfdfffffffffffffffffffffffffffffff"))
+    }
+  }
 }

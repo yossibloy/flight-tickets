@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
 
@@ -14,7 +14,9 @@ export class GurdGuard implements CanActivate {
     }
     const request = context.switchToHttp().getRequest().query.roles;
     console.log(request,roles,roles == request);
-    
+    if(roles != request){
+      throw new HttpException("אין לך הרשאת מנהל", HttpStatus.FORBIDDEN)
+    }
     return roles == request
   }
 }

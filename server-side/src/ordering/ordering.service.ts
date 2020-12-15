@@ -4,11 +4,13 @@ import { UpdateOrderingDto } from './dto/update-ordering.dto';
 import { Ordering } from './entities/ordering.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class OrderingService {
   constructor(@InjectRepository(Ordering)
-  private readonly repo: Repository<Ordering>) {
+  private readonly repo: Repository<Ordering>,private jwt: JwtService
+  ) {
   }
 
  async create(createOrderingDto: CreateOrderingDto) {    
@@ -27,7 +29,13 @@ export class OrderingService {
       return this.repo.find()
     }
     findOne(q) {
-      return this.repo.find({ where: { lastname: q.name, OrderNumber: q.OrderNumber } });;
+      return this.repo.find({ where: { lastname: q.name, OrderNumber: q.OrderNumber } })
+      .then(order=>{
+        let token = this.jwt.sign(q) 
+        order[0]['token'] = token
+        return order
+
+      })
     }
     removeall(num: string) {    
       return this.repo.delete({OrderNumber:num});

@@ -1,35 +1,16 @@
-<form #form class="management" [formGroup]="menegerFormGrup">
-    <div class="form-group">
-        <label>שם מנהל</label>
-        <input class="form-control" id="cc-nm" type="text" formControlName="name">
-        <errors [error]="menegerFormGrup.controls.name"></errors>
-    </div>
+<h1>!!ברוך הבא מנהל</h1>
 
-    <div class="form-group">
-        <label>סיסמה</label>
-        <input class="form-control" type="text" id="cc-OrderNumber" formControlName="password">
-        <errors [error]="menegerFormGrup.controls.password"></errors>
-    </div>
-    <button style="background-color: chocolate;" class="btn btn-primary btn-lg btn-block"
-        (click)="meneger()">היכנס</button>
-</form>
-<div class="navdiv" #div hidden>
-
- 
-            <ul #nav hidden class="ulbut">
-                <button type="button" class="btn btn-primary" (click)="getAllFliyts()">קבלת כל הטיסות</button>
-                <button type="button" class="btn btn-primary" (click)="getPassengersByNum()">קבלת נוסעים לפי מספר הזמנה</button>
-                <button type="button" class="btn btn-primary" (click)="getAllOrders()">קבלת כל מזמינים</button>
-                <button type="button" class="btn btn-primary" (click)="getOrdersByNum()">קבלת המזמינים לפי מספר הזמנה</button>
-                <button type="button" class="btn btn-primary" (click)="addFliyts()">הוספת טיסה</button>
-                <button type="button" class="btn btn-primary" (click)="updetFliyts()">שינוי טיסה</button>
-                <button type="button" class="btn btn-primary" (click)="deleteFliyts()">ביטול טיסה</button>
-
-            </ul>
-
-
+<div class="navdiv"  >
+    <ul   class="ulbut">
+        <button type="button" class="btn btn-primary" (click)="getAllFliyts()">קבלת כל הטיסות</button>
+        <button type="button" class="btn btn-primary" (click)="getPassengersByNum()">קבלת נוסעים לפי מספר הזמנה</button>
+        <button type="button" class="btn btn-primary" (click)="getAllOrders()">קבלת כל מזמינים</button>
+        <button type="button" class="btn btn-primary" (click)="getOrdersByNum()">קבלת המזמינים לפי מספר הזמנה</button>
+        <button type="button" class="btn btn-primary" (click)="addFliyts()">הוספת טיסה</button>
+        <button type="button" class="btn btn-primary" (click)="updetFliyts()">שינוי טיסה</button>
+        <button type="button" class="btn btn-primary" (click)="deleteFliyts()">ביטול טיסה</button>
+    </ul>
 </div>
 
 
 
-<!-- <div #err hidden>errerrerrerrerrerrerrerrerrerrerrerrerrerrerrerrerrerrerrerr</div> -->
