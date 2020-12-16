@@ -23,22 +23,25 @@ export class FlightsService {
   }
  
 
-
-
-
-  create(createFlightDto: CreateFlightDto) {
-    return 'This action adds a new flight';
-  }
-
-  findAll() {
-    return `This action returns all flights`;
+  async create(createFlightDto: CreateFlightDto) {    
+    const flight = new Flight()
+    flight.company = createFlightDto.company
+    flight.depart = createFlightDto.depart
+    flight.duration = createFlightDto.duration
+    flight.landing = createFlightDto.landing 
+    flight.origin = createFlightDto.origin 
+    flight.place = createFlightDto.place 
+    flight.prise = createFlightDto.prise 
+    flight.takeoff = createFlightDto.takeoff 
+    flight.target = createFlightDto.target 
+  
+    await this.repo.save(flight)
   }
 
   update(id: number, updateFlightDto: UpdateFlightDto) {
     return this.repo.update(id,updateFlightDto);
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} flight`;
+  remove(num: number) {    
+    return this.repo.delete({numFlyght:num});
   }
 }

@@ -17,7 +17,6 @@ export class FirstcomComponent implements OnInit {
 
   ngOnInit(): void {  }
 
-  //מערך יעדים
   countryList = [
     "Afghanistan",
     "Albania",
@@ -269,7 +268,6 @@ export class FirstcomComponent implements OnInit {
     "Zimbabwe",
     "Åland Islands"
   ];
-
 
   MyFormGrup = new FormGroup({
     origin: new FormControl('', [Validators.required]),

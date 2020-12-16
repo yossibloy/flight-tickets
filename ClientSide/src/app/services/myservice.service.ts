@@ -6,39 +6,41 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class MyserviceService {
-  constructor(public http:HttpClient) {}
+  constructor(public http: HttpClient) { }
 
-  
 
- getdb(url:string,q):Observable<any> {
-  return this.http.get(url+q)
-}
 
- getalldb(url:string):Observable<any> {
-  return this.http.get(url)
-}
+  getdb(url: string, q): Observable<any> {
+    return this.http.get(url + q)
+  }
 
- postdb(url:string,b):Observable<any> {
-  return this.http.post(url,b)
-}
- updatedb(url:string,id):Observable<any> {
-  return this.http.put(url,id)
-}
- delete(url:string):Observable<any> {
-  return this.http.delete(url)
-}
+  getalldb(url: string): Observable<any> {
+    return this.http.get(url)
+  }
+
+  postdb(url: string, b): Observable<any> {
+    return this.http.post(url, b)
+  }
+  updatedb(url: string, id): Observable<any> {
+    return this.http.put(url, id)
+  }
+  delete(url: string): Observable<any> {
+    return this.http.delete(url)
+  }
+
+ 
 
   // 1טיסות נבחרות
-  conditions:any[] = []
-  
+  conditions: any[] = []
+
   // טיסות נבחרות2
-  conditions2:any[]=[]
+  conditions2: any[] = []
 
   //הלוך טיסה נוכחית
-  thisflighyt1:object
+  thisflighyt1: object
 
   //חזור טיסה נוכחית
-  thisflighyt2:object
+  thisflighyt2: object
 
   // סך הנוסעים הכללי
   passengers: number = 0
@@ -47,13 +49,13 @@ export class MyserviceService {
   passengersadult: number = 0
 
   // מערך באורך מספר נוסעים
-  arr:number[] = []
+  arr: number[] = []
 
   //מספר הזמנה
   OrderNumber
 
   // סכום כבודות
-  sumprycebaggage:number = 0
+  sumprycebaggage: number = 0
 
 
   passengersarr = []

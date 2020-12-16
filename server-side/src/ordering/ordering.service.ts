@@ -31,10 +31,12 @@ export class OrderingService {
     findOne(q) {
       return this.repo.find({ where: { lastname: q.name, OrderNumber: q.OrderNumber } })
       .then(order=>{
+        if (order.length>0) {
+
         let token = this.jwt.sign(q) 
         order[0]['token'] = token
         return order
-
+        }
       })
     }
     removeall(num: string) {    

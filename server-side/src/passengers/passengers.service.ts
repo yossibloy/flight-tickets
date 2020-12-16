@@ -29,8 +29,12 @@ export class PassengersService {
 
 
 
-  findOne(q) {
+  findByOrderNumber(q) {
     return this.repo.find({ where: { OrderNumber: q.OrderNumber } });;
+  }
+
+  findBynumFlyght(q) {    
+    return this.repo.find({ where: { flighitNumber1: q.numFlyght }} || {where: { flighitNumber2: q.numFlyght } })
   }
 
   remove(id: number) {    

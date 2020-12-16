@@ -5,7 +5,7 @@ import { UpdatePassengerDto } from './dto/update-passenger.dto';
 
 @Controller('passengers')
 export class PassengersController {
-  constructor(private readonly passengersService: PassengersService) {}
+  constructor(private readonly passengersService: PassengersService) { }
 
   @Post()
   create(@Body() createPassengerDto: CreatePassengerDto) {
@@ -14,14 +14,19 @@ export class PassengersController {
 
 
   @Get()
-  findFlightsgo(@Query() qq) {
-    return this.passengersService.findOne(qq);
+  ByOrderNumber(@Query() qq) {
+    return this.passengersService.findByOrderNumber(qq);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.passengersService.findOne(+id);
+  @Get("BynumFlyght")
+  BynumFlyght(@Query() qq) {  
+    return this.passengersService.findBynumFlyght(qq);
   }
+
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.passengersService.findOne(+id);
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
@@ -30,7 +35,7 @@ export class PassengersController {
 
   @Delete('Delete/:num')
   removeall(@Param('num') num: string) {
-     return this.passengersService.removeall(num);
+    return this.passengersService.removeall(num);
   }
 
 }

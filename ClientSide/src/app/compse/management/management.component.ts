@@ -43,11 +43,12 @@ export class ManagementComponent implements OnInit {
     this.svc.getdb("http://localhost:3000/ordering",
       `?name=${this.managementFormGrup.value.name}&&OrderNumber=${this.managementFormGrup.value.OrderNumber}`)
       .subscribe((res) => {
-        localStorage.setItem("token",res[0].token)        
-        if (res == false) {
+        if (res == null) {
           this.sori.nativeElement.hidden = false
+          return
         }
         else {
+          localStorage.setItem("token",res[0].token)        
           this.svc.getdb("http://localhost:3000/ordering/Meneger", `?roles=${res[0].roles}`).subscribe((r) => {
             this.router.navigate(['/meneger'])
             return

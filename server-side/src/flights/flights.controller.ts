@@ -7,7 +7,10 @@ import { UpdateFlightDto } from './dto/update-flight.dto';
 export class FlightsController {
   constructor(private readonly flightsService: FlightsService) { }
 
-
+  @Post()
+  create(@Body() createFlightDto: CreateFlightDto) {
+    return this.flightsService.create(createFlightDto);
+  }
 
   @Get()
   findFlights(@Query() qq: object) {
@@ -36,7 +39,7 @@ export class FlightsController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.flightsService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.flightsService.remove(id);
   }
 }
