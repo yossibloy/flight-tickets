@@ -25,7 +25,7 @@ export class Passenger extends BaseEntity{
     @Column()
     flighitNumber1:number
 
-    @Column()
+    @Column({nullable:true})
     flighitNumber2:number
 
     @Column()

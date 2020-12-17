@@ -1,17 +1,18 @@
 <h1>!!ברוך הבא מנהל</h1>
 
 
-
+<!-- ראשי -->
 <div #bthget>
     <button type="button" class="btn btn-primary" (click)="getAllFliyts()">קבלת כל הטיסות</button>
     <button type="button" class="btn btn-primary" (click)="getAllOrders()">קבלת כל מזמינים</button>
 </div>
 
+<!--טיסות-->
 <div *ngFor="let i of fltghtsarr">
-    <button type="button" class="btn btn-primary" (click)="getPassengersByNum(i.numFlyght)">קבלת נוסעים של טיסה
+    <button type="button" class="btn btn-primary" (click)="getPassengersBynumFlyght(i.numFlyght)">קבלת נוסעים של טיסה
         זו</button>
     <button type="button" class="btn btn-primary" (click)="getOrdersByNum(i.numFlyght)">קבלת מזמינים של טיסה זו</button>
-    <button type="button" class="btn btn-primary" (click)="updetFliyts(i.numFlyght)">שינוי טיסה</button>
+    <button type="button" class="btn btn-primary" (click)="updetFliyts(i)">שינוי טיסה</button>
     <button type="button" class="btn btn-primary" (click)="deleteFliyts(i.numFlyght)">ביטול טיסה</button>
 
     {{i.numFlyght}}
@@ -24,20 +25,25 @@
     {{i.takeoff}}
     {{i.target}}
 </div>
+<br><br>
+<!-- מזמינים -->
+<div #order>
+    <div *ngFor="let i of ordringarr">
+        <button type="button" class="btn btn-primary" (click)="getPassengersByOrderNumber(i.OrderNumber)"> נוסעים של מזמין </button>
+        <button type="button" class="btn btn-primary" (click)="deleteorder(i.OrderNumber)">הסרת מזמין</button>
+        <button type="button" class="btn btn-primary" (click)="updetOrder(i)">שינוי פרטי מזמין</button>
 
-<div *ngFor="let i of ordringarr">
-    <button type="button" class="btn btn-primary" (click)="getPassengersByNum(i.numFlyght)">קבלת נוסעים של מזמין
-        זה</button>
 
-    {{i.firstname}}
-    {{i.OrderNumber}}
-    {{i.email}}
-    {{i.lastname}}
-    {{i.phonNumber}}
+        {{i.firstname}}
+        {{i.OrderNumber}}
+        {{i.email}}
+        {{i.lastname}}
+        {{i.phonNumber}}
+    </div>
 </div>
 
-
-
+<!-- כפתור הוספת טיסה -->
+<br><br>
 <div #bthadd hidden>
     <button style="width: 20%;" (click)="addFliyts()" class=" btn-primary btn-lg btn-block">
         הוספת טיסה <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor"
@@ -46,16 +52,13 @@
                 d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
         </svg>
     </button>
-</div><br><br>
-
-
-
+</div>
+<br><br>
 
 
 
 
 <!-- הוספת טיסה -->
-
 <form style=" width: 70%;margin: auto;  border: solid 3px blue; padding: 10px;border-radius: 15px; 
 " #form [formGroup]="MyFormGrup" class="form-inline" action="/action_page.php" hidden>
 
@@ -128,4 +131,155 @@
 
     <button style="width: 20%; margin: auto;" (click)="postaddFliyts()" [disabled]="MyFormGrup.invalid"
         class=" btn-primary btn-lg btn-block">הוסף טיסה</button>
+</form>
+
+
+
+
+<!-- שינוי טיסה -->
+<br><br>
+<form style="width: 70% ;margin: auto;  border: solid 3px blue; padding: 10px;border-radius: 15px; 
+" #putform [formGroup]="updetFliytForm" class="form-inline" action="/action_page.php" hidden>
+
+    <div class="form-group">
+        <input class="form-control" formControlName="prise">
+        <label>:מחיר </label>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" formControlName="company">
+        <label>:חברת טיסה </label>
+    </div>
+
+    <div class="form-group">
+        <label for="example-date-input" class="col-2 col-form-label"></label>
+        <input class="form-control" type="date" id="example-date-input" formControlName="depart">
+        <label>:תאריך </label>
+    </div>
+
+    <div class="form-group">
+        <select class="form-control" id="sel1" formControlName="target" style="width: 200px;">
+            <option *ngFor="let coutr of countryList" [value]="coutr">
+                {{coutr}}
+            </option>
+        </select>
+        <label>יעד</label>
+        <img src="../../../assets/unnamed (3).png" alt="">
+    </div>
+
+    <div class="form-group">
+        <select class="form-control" id="sel2" formControlName="origin" style="width: 200px;">
+            <option *ngFor="let coutr of countryList" [value]="coutr">
+                {{coutr}}
+            </option>
+        </select>
+        <label>מוצא</label>
+        <img src="../../../assets/unnamed (2).png" alt="">
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" formControlName="duration">
+        <label>:משך טיסה </label>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" formControlName="landing">
+        <label>:זמן נחיתה </label>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" formControlName="takeoff">
+        <label>:זמן המראה </label>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" formControlName="place">
+        <label>:מספר מקומות </label>
+    </div>
+
+    <br><br>
+
+    <button style="width: 20%; margin: auto;" (click)="postupdateFliyts(this.updetFliytForm.value.numFlyght)"
+        class=" btn-primary btn-lg btn-block">שנה טיסה</button>
+</form>
+
+
+<!-- רשימת נוסעים לטיסה מסוימת -->
+<div *ngFor="let i of passengers">
+    <button type="button" class="btn btn-primary" (click)="deletepassenger(i.id)">הסרת נוסע</button>
+    <button type="button" class="btn btn-primary" (click)="updatepassenger(i)">שינוי פרטי נוסע</button>
+
+    {{i.firstname}}
+    {{i.OrderNumber}}
+    {{i.sex}}
+    {{i.lastname}}
+    {{i.flighitNumber1}}
+    {{i.flighitNumber2}}
+    {{i.birthDate}}
+</div>
+
+
+<!-- שינוי נוסע -->
+<br><br>
+
+<form #putformpass [formGroup]="updatepassengerForm" class="form-inline" action="/action_page.php" hidden>
+
+    <div class="form-group">
+        <select class="form-control" id="sel1" formControlName="sex">
+            <option>male</option>
+            <option>female</option>
+        </select>
+        <label>:מין</label>
+    </div>
+
+    <div class="form-group">
+        <label for="example-date-input" class="col-2 col-form-label"></label>
+        <input class="form-control" type="date" value="2011-08-19" id="example-date-input" placeholder="date of birth"
+            formControlName="birthDate">
+        <label>:תאריך לידה</label>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" placeholder="last name" formControlName="lastname">
+        <label>:שם משפחה</label>
+    </div>
+
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="first name" formControlName="firstname">
+        <label>:שם פרטי</label>
+    </div>
+
+    <br><br>
+    <button style="width: 20%; margin: auto;" (click)="putupdatepassenger(this.updatepassengerForm.value.id)"
+        class=" btn-primary btn-lg btn-block">שנה פרטים</button>
+
+</form>
+
+
+<!-- שינוי פרטי מזמין -->
+<form #putorformord [formGroup]="updateorderForm" class="form-inline" action="/action_page.php" hidden>
+
+    <div class="form-group">
+        <input type="email" class="form-control" placeholder="g-mail" formControlName="email">
+        <label>כתובת אימייל</label>
+    </div>
+
+    <div class="form-group">
+        <input type="tel" class="form-control" placeholder="phon Number" formControlName="phonNumber">
+        <label> :פלפון</label>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" placeholder="last name" formControlName="lastname">
+        <label>:שם משפחה</label>
+    </div>
+
+
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="first_name" formControlName="firstname">
+        <label>:שם פרטי</label>
+    </div>
+    <br><br>
+    <button style="width: 20%; margin: auto;" (click)="putupdateorder(this.updateorderForm.value.id)"
+        class=" btn-primary btn-lg btn-block">שנה פרטים</button>
 </form>

@@ -38,4 +38,11 @@ export class PassengersController {
     return this.passengersService.removeall(num);
   }
 
+  
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateFlight) {
+    return this.passengersService.update(+id, updateFlight);
+    
+  }
+
 }

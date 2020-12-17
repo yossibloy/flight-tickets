@@ -12,4 +12,8 @@ export class CreateOrderingDto {
     OrderNumber?:string
 
     roles?:string
+
+    flighitNumber1?:number
+
+    flighitNumber2?:number
 }

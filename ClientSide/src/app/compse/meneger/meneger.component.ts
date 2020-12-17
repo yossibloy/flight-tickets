@@ -13,12 +13,35 @@ export class MenegerComponent implements OnInit {
   constructor(public svc: MyserviceService, private router: Router) { }
 
   ngOnInit(): void {
+    this.updetFliytFormj()
+    this.updatepassengerj()
+    this.updateOrderj()
+
   }
+
+  updetFliytForm = new FormGroup({})
+  updatepassengerForm = new FormGroup({})
+  updateorderForm = new FormGroup({})
+
   @ViewChild("bthadd") bthadd: ElementRef
   @ViewChild("bthget") bthget: ElementRef
   @ViewChild("form") form: ElementRef
+  @ViewChild("putform") putform: ElementRef
+  @ViewChild("putformpass") putformpass: ElementRef
+  @ViewChild("putorformord") putorformord: ElementRef
+  @ViewChild("order") order: ElementRef
+
+  numFlyght
+  OrderNumber
+
   fltghtsarr: []
   ordringarr: []
+  passengers: []
+
+  putflyght = { company: "", depart: "", duration: "", landing: "", numFlyght: null, origin: "", place: null, prise: null, takeoff: "", target: "" }
+  putpassenger = { birthDate: "", firstname: "", lastname: "", sex: "", id: null }
+  putorder = { email: "", firstname: "", lastname: "", phonNumber: "", id: null }
+
 
   countryList = [
     "Afghanistan",
@@ -279,9 +302,7 @@ export class MenegerComponent implements OnInit {
     this.bthadd.nativeElement.hidden = false
     this.bthget.nativeElement.hidden = true
   }
-  //שינוי טיסה
-  updetFliyts(num) {
-  }
+
   //מחיקת טיסה
   deleteFliyts(num) {
     if (confirm('האם הינך בטוח שאתה רוצה לבטל טיסה זו? \n לאחר מכן לא תוכל להתחרט...')) {
@@ -291,60 +312,198 @@ export class MenegerComponent implements OnInit {
     }
   }
 
-  //קבלת נוסעים
-  getPassengersByNum(numFlyght) {
-    this.svc.getdb("http://localhost:3000/passengers/BynumFlyght",`?numFlyght=${numFlyght}` ).subscribe((e) => console.log(e))
+  //קבלת מזמינים
+  getOrdersByNum(numFlyght) {
+    this.svc.getdb("http://localhost:3000/ordering/BynumFlyght", `?numFlyght=${numFlyght}`).subscribe((e) => {
+      this.ordringarr = e
+      this.bthget.nativeElement.hidden = true
+      console.log(e)
+    })
+  }
+
+  //קבלת  הנוסעים של הטיסה
+  getPassengersBynumFlyght(numFlyght) {
+    this.svc.getdb("http://localhost:3000/passengers/BynumFlyght", `?numFlyght=${numFlyght}`).subscribe((e) => {
+      this.passengers = e
+      this.numFlyght = numFlyght
+    })
   }
 
 
   //מזמינים
-  //קבלת מזמינים
-  getOrdersByNum(num) {
-    this.svc.getdb("http://localhost:3000/ordering", num).subscribe((e) => console.log(e))
-  }
-
   //קבלת כל המזמינים
   getAllOrders() {
     this.svc.getalldb("http://localhost:3000/ordering/all").subscribe((e) => {
       this.ordringarr = e
       this.bthget.nativeElement.hidden = true
+
+    })
+  }
+  //קבלת נוסעים לפי מזמין
+  getPassengersByOrderNumber(OrderNumber) {
+    this.svc.getdb("http://localhost:3000/passengers", `?OrderNumber=${OrderNumber}`).subscribe((e) => {
+      this.passengers = e
+      this.order.nativeElement.hidden = true
+      this.OrderNumber = OrderNumber
+    })
+  }
+
+  //מחיקת מזמין +נוסעים
+  deleteorder(OrderNumber) {
+    if (confirm('פעולה זו תמחק את המזמין + כל הנוסעים שהוזמנו דרכו \n האם הינך בטוח שאתה רוצה לבטל טיסה זו?  \n לאחר מכן לא תוכל להתחרט...')) {
+      this.svc.delete(`http://localhost:3000/passengers/Delete/${OrderNumber}`).subscribe(() => {
+        this.svc.getdb("http://localhost:3000/passengers", `?OrderNumber=${this.OrderNumber}`).subscribe((e) => this.passengers = e)
+      })
+      this.svc.delete(`http://localhost:3000/ordering/Delete/${OrderNumber}`).subscribe((e) => console.log("ll")
+      )
+    }
+  }
+
+  //שינוי פרטי מזמין
+  updetOrder(obg) {
+    this.putorder = obg   
+     this.putorformord.nativeElement.hidden = false
+    this.updateOrderj()
+  }
+
+
+  putupdateorder(id){
+    if (confirm('שים לב! \n האם הינך בטוח שאתה רוצה לשנות פרטי מזמין זה?')) {
+      this.svc.updatedb(`http://localhost:3000/ordering/${id}`, this.updateorderForm.value).subscribe((e) => {
+        this.putorformord.nativeElement.hidden = true
+       
+      })
+    }
+  }
+
+    //פורם שינוי מזמין
+  updateOrderj() {
+    this.updateorderForm = new FormGroup({
+    firstname: new FormControl(`${this.putorder.firstname}`),
+    lastname: new FormControl(`${this.putorder.lastname}`),
+    email: new FormControl(`${this.putorder.email}`),
+    phonNumber: new FormControl(`${this.putorder.phonNumber}`),
+    id: new FormControl(`${this.putorder.id}`),
+  })
+}
+
+
+
+
+  //מחיקת נוסע
+  deletepassenger(id) {
+    if (confirm('האם הינך בטוח שאתה רוצה למחוק נוסע זו? \n לאחר מכן לא תוכל להתחרט...')) {
+      this.svc.delete(`http://localhost:3000/passengers/${id}`).subscribe(() => {
+        this.svc.getdb("http://localhost:3000/passengers", `?OrderNumber=${this.OrderNumber}`).subscribe((e) => {
+          this.passengers = e
+        })
+      })
+    }
+  }
+
+
+  //שינוי פרטי נוסע
+  updatepassenger(obg) {
+    this.putpassenger = obg
+    this.putformpass.nativeElement.hidden = false
+    this.updatepassengerj()
+  }
+
+  //שינוי פרטי נוסע put
+  putupdatepassenger(id) {
+    if (confirm('שים לב! \n האם הינך בטוח שאתה רוצה לשנות פרטי נוסע זה?')) {
+      this.svc.updatedb(`http://localhost:3000/passengers/${id}`, this.updatepassengerForm.value).subscribe((e) => {
+        this.putformpass.nativeElement.hidden = true
+        this.svc.getdb("http://localhost:3000/passengers", `?OrderNumber=${this.OrderNumber}`).subscribe((e) => {
+          this.passengers = e
+        })
+      })
+    }
+  }
+
+  //פורם שינוי נוסע
+  updatepassengerj() {
+    this.updatepassengerForm = new FormGroup({
+      birthDate: new FormControl(`${this.putpassenger.birthDate}`),
+      id: new FormControl(`${this.putpassenger.id}`),
+      firstname: new FormControl(`${this.putpassenger.firstname}`),
+      lastname: new FormControl(`${this.putpassenger.lastname}`),
+      sex: new FormControl(`${this.putpassenger.sex}`),
+
     })
   }
 
 
+
+
+
+
+
+  //הוספת טיסה
   addFliyts() {
     this.form.nativeElement.hidden = false
   }
-
+  //  post לטיסה
   postaddFliyts() {
-    this.svc.postdb("http://localhost:3000/flights",this.MyFormGrup.value ).subscribe((e) => 
-    this.svc.getalldb("http://localhost:3000/flights/all").subscribe((e) => this.fltghtsarr = e) )
-
+    this.svc.postdb("http://localhost:3000/flights", this.MyFormGrup.value).subscribe((e) => {
+      this.form.nativeElement.hidden = true
+      this.svc.getalldb("http://localhost:3000/flights/all").subscribe((e) => this.fltghtsarr = e)
+    })
   }
 
-
-
-
-
-   //פורם הוספת טיסה
+  //פורם הוספת טיסה
   MyFormGrup = new FormGroup({
     origin: new FormControl('', [Validators.required]),
     target: new FormControl('', [Validators.required]),
     depart: new FormControl('', [Validators.required]),
-
     prise: new FormControl('', [Validators.required]),
     company: new FormControl('', [Validators.required]),
     duration: new FormControl('', [Validators.required]),
     takeoff: new FormControl('', [Validators.required]),
     landing: new FormControl('', [Validators.required]),
     place: new FormControl('', [Validators.required]),
-
-
   })
+
+
+
+
+
+
+
+  //שינוי טיסה
+  updetFliyts(obg) {
+    this.putflyght = obg
+    this.putform.nativeElement.hidden = false
+    this.updetFliytFormj()
+  }
+  //put שינוי טיסה
+  postupdateFliyts(numFlyght) {
+    if (confirm('שים לב! \n האם הינך בטוח שאתה רוצה לשנות טיסה זו?')) {
+      this.svc.updatedb(`http://localhost:3000/flights/${numFlyght}`, this.updetFliytForm.value).subscribe(() => {
+        this.putform.nativeElement.hidden = true
+        this.svc.getalldb("http://localhost:3000/flights/all").subscribe((e) => this.fltghtsarr = e)
+      }
+      )
+    }
+  }
+
+  //פורם שינוי טיסה
+  updetFliytFormj() {
+    this.updetFliytForm = new FormGroup({
+      origin: new FormControl(`${this.putflyght.origin}`),
+      target: new FormControl(`${this.putflyght.target}`),
+      depart: new FormControl(`${this.putflyght.depart}`),
+      prise: new FormControl(`${this.putflyght.prise}`),
+      company: new FormControl(`${this.putflyght.company}`),
+      duration: new FormControl(`${this.putflyght.duration}`),
+      takeoff: new FormControl(`${this.putflyght.takeoff}`),
+      landing: new FormControl(`${this.putflyght.landing}`),
+      place: new FormControl(`${this.putflyght.place}`),
+      numFlyght: new FormControl(`${this.putflyght.numFlyght}`),
+    })
+  }
+
 }
-
-
-
 
 
 

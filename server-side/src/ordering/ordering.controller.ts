@@ -18,9 +18,15 @@ export class OrderingController {
 
 
   @Get()  
-  findFlightsgo(@Query() qq ) { 
-    return this.orderingService.findOne(qq);
+  findOnebyByorder(@Query() qq ) { 
+    return this.orderingService.findOnebyByorder(qq);
   }
+  @Get("BynumFlyght")  
+  findOnebynum(@Query() qq ) {     
+    return this.orderingService.findOnebynum(qq);
+  }
+
+
   @Get("all")  
   findallorders()  { 
     return this.orderingService.findall();
@@ -35,5 +41,12 @@ export class OrderingController {
   @Delete('Delete/:num')
   removeall(@Param('num') num: string) {
      return this.orderingService.removeall(num);
+  }
+
+    
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateFlight) {
+    return this.orderingService.update(+id, updateFlight);
+    
   }
 }

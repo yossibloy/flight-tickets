@@ -19,6 +19,13 @@ export class Ordering {
     email:string
 
     @Column({nullable:true})
+    flighitNumber1:number
+
+    @Column({nullable:true})
+    flighitNumber2:number
+
+
+    @Column({nullable:true})
     OrderNumber:string
 
     @Column({nullable:true})

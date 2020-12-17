@@ -21,6 +21,8 @@ export class OrderingService {
       passenger.phonNumber = createOrderingDto.phonNumber 
       passenger.OrderNumber = createOrderingDto.OrderNumber 
       passenger.roles = createOrderingDto.roles 
+      passenger.flighitNumber1 = createOrderingDto.flighitNumber1 
+      passenger.flighitNumber2 = createOrderingDto.flighitNumber2 
     
       await this.repo.save(passenger)
     }
@@ -28,7 +30,14 @@ export class OrderingService {
     findall(){
       return this.repo.find()
     }
-    findOne(q) {
+
+    findOnebynum(q){
+      return this.repo.find({ where:
+        [ { flighitNumber1: q.numFlyght },
+          { flighitNumber2: q.numFlyght }] })
+    }
+    
+    findOnebyByorder(q) {
       return this.repo.find({ where: { lastname: q.name, OrderNumber: q.OrderNumber } })
       .then(order=>{
         if (order.length>0) {
@@ -42,5 +51,10 @@ export class OrderingService {
     removeall(num: string) {    
       return this.repo.delete({OrderNumber:num});
     }
+
+    
+  update(id: number, updateFlight) {    
+    return this.repo.update(id,updateFlight);
+  }
  
 }

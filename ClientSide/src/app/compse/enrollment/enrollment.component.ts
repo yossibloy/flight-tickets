@@ -65,6 +65,8 @@ export class EnrollmentComponent implements OnInit {
      }
 
      this.inviting.value["OrderNumber"] =  this.svc.OrderNumber     
+     this.inviting.value["flighitNumber1"] = this.svc.thisflighyt1[0]     
+     this.inviting.value["flighitNumber2"] = this.svc.thisflighyt2[0]    
     this.svc.postdb('http://localhost:3000/ordering', this.inviting.value).subscribe()
   }
  

@@ -4,6 +4,7 @@ import { UpdatePassengerDto } from './dto/update-passenger.dto';
 import { Passenger } from './entities/passenger.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UpdateFlightDto } from 'src/flights/dto/update-flight.dto';
 
 @Injectable()
 export class PassengersService {
@@ -34,7 +35,14 @@ export class PassengersService {
   }
 
   findBynumFlyght(q) {    
-    return this.repo.find({ where: { flighitNumber1: q.numFlyght }} || {where: { flighitNumber2: q.numFlyght } })
+    return this.repo.find({ where:
+      [ { flighitNumber1: q.numFlyght },
+        { flighitNumber2: q.numFlyght }] })
+  }
+
+
+  update(id: number, updateFlight) {    
+    return this.repo.update(id,updateFlight);
   }
 
   remove(id: number) {    

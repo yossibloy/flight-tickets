@@ -125,7 +125,6 @@ export class ManagementComponent implements OnInit {
 
   deli() {
     if (confirm('האם הינך בטוח שאתה רוצה לבטל טיסה זו? \n לאחר מכן לא תוכל להתחרט...')) {
-
       this.svc.delete(`http://localhost:3000/passengers/Delete/${this.svc.OrderNumber}`).subscribe(() => console.log("fdffffffffffffffffffffff"))
       this.svc.delete(`http://localhost:3000/ordering/Delete/${this.svc.OrderNumber}`).subscribe(() => console.log("fdfdfffffffffffffffffffffffffffffff"))
     }
