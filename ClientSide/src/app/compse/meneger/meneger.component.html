@@ -1,47 +1,64 @@
 <h1>!!ברוך הבא מנהל</h1>
-
-
 <!-- ראשי -->
 <div #bthget>
     <button type="button" class="btn btn-primary" (click)="getAllFliyts()">קבלת כל הטיסות</button>
     <button type="button" class="btn btn-primary" (click)="getAllOrders()">קבלת כל מזמינים</button>
 </div>
-
 <!--טיסות-->
-<div *ngFor="let i of fltghtsarr">
-    <button type="button" class="btn btn-primary" (click)="getPassengersBynumFlyght(i.numFlyght)">קבלת נוסעים של טיסה
-        זו</button>
-    <button type="button" class="btn btn-primary" (click)="getOrdersByNum(i.numFlyght)">קבלת מזמינים של טיסה זו</button>
-    <button type="button" class="btn btn-primary" (click)="updetFliyts(i)">שינוי טיסה</button>
-    <button type="button" class="btn btn-primary" (click)="deleteFliyts(i.numFlyght)">ביטול טיסה</button>
-
-    {{i.numFlyght}}
-    {{i.company}}
-    {{i.depart}}
-    {{i.duration}}
-    {{i.landing}}
-    {{i.origin}}
-    {{i.place}}
-    {{i.takeoff}}
-    {{i.target}}
-</div>
+<table style="width:70%; margin: auto;">
+    <tr>
+        <th colspan="4">פונקציות</th>
+        <th>מספר טיסה</th>
+        <th>חברת טיסה</th>
+        <th>משך טיסה</th>
+        <th> זמן נחיתה</th>
+        <th>זמן המראה</th>
+        <th>תאריך</th>
+        <th>יעד </th>
+        <th> מוצא</th>
+    </tr>
+    <tr *ngFor="let i of fltghtsarr">
+        <td><button type="button" class="btn btn-primary" (click)="deleteFliyts(i.numFlyght)">ביטול טיסה</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="updetFliyts(i)">שינוי טיסה</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="getPassengersBynumFlyght(i.numFlyght)">
+                נוסעים</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="getOrdersByNum(i.numFlyght)"> מזמינים</button></td>
+        <td>{{i.numFlyght}}</td>
+        <td>{{i.company}}</td>
+        <td>{{i.duration}}</td>
+        <td>{{i.landing}}</td>
+        <td>{{i.takeoff}}</td>
+        <td>{{i.depart}}</td>
+        <td>{{i.target}}</td>
+        <td>{{i.origin}}</td>
+    </tr>
+</table>
 <br><br>
 <!-- מזמינים -->
 <div #order>
-    <div *ngFor="let i of ordringarr">
-        <button type="button" class="btn btn-primary" (click)="getPassengersByOrderNumber(i.OrderNumber)"> נוסעים של מזמין </button>
-        <button type="button" class="btn btn-primary" (click)="deleteorder(i.OrderNumber)">הסרת מזמין</button>
-        <button type="button" class="btn btn-primary" (click)="updetOrder(i)">שינוי פרטי מזמין</button>
-
-
-        {{i.firstname}}
-        {{i.OrderNumber}}
-        {{i.email}}
-        {{i.lastname}}
-        {{i.phonNumber}}
-    </div>
+    <table style="width:70%; margin: auto;">
+        <tr>
+            <th colspan="3">פונקציות</th>
+            <th>מספר הזמנה</th>
+            <th> אימייל</th>
+            <th>מספר פלפון</th>
+            <th> שם משפחה </th>
+            <th> שם פרטי</th>
+        </tr>
+        <tr *ngFor="let i of ordringarr">
+            <td><button type="button" class="btn btn-primary" (click)="deleteorder(i.OrderNumber)">הסרת מזמין</button>
+            </td>
+            <td><button type="button" class="btn btn-primary" (click)="updetOrder(i)">שינוי פרטי מזמין</button></td>
+            <td><button type="button" class="btn btn-primary" (click)="getPassengersByOrderNumber(i.OrderNumber)">
+                    נוסעים </button></td>
+            <td>{{i.OrderNumber}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.phonNumber}}</td>
+            <td>{{i.lastname}}</td>
+            <td>{{i.firstname}}</td>
+        </tr>
+    </table>
 </div>
-
 <!-- כפתור הוספת טיסה -->
 <br><br>
 <div #bthadd hidden>
@@ -54,33 +71,25 @@
     </button>
 </div>
 <br><br>
-
-
-
-
 <!-- הוספת טיסה -->
 <form style=" width: 70%;margin: auto;  border: solid 3px blue; padding: 10px;border-radius: 15px; 
 " #form [formGroup]="MyFormGrup" class="form-inline" action="/action_page.php" hidden>
-
     <div class="form-group">
         <input class="form-control" formControlName="prise">
         <label>:מחיר </label>
         <errors [error]="MyFormGrup.controls.prise"></errors>
     </div>
-
     <div class="form-group">
         <input class="form-control" formControlName="company">
         <label>:חברת טיסה </label>
         <errors [error]="MyFormGrup.controls.company"></errors>
     </div>
-
     <div class="form-group">
         <label for="example-date-input" class="col-2 col-form-label"></label>
         <input class="form-control" type="date" id="example-date-input" formControlName="depart">
         <label>:תאריך </label>
         <errors [error]="MyFormGrup.controls.depart"></errors>
     </div>
-
     <div class="form-group">
         <select class="form-control" id="sel1" formControlName="target" style="width: 200px;">
             <option *ngFor="let coutr of countryList" [value]="coutr">
@@ -91,7 +100,6 @@
         <img src="../../../assets/unnamed (3).png" alt="">
         <errors [error]="MyFormGrup.controls.target"></errors>
     </div>
-
     <div class="form-group">
         <select class="form-control" id="sel2" formControlName="origin" style="width: 200px;">
             <option *ngFor="let coutr of countryList" [value]="coutr">
@@ -102,61 +110,47 @@
         <img src="../../../assets/unnamed (2).png" alt="">
         <errors [error]="MyFormGrup.controls.origin"></errors>
     </div>
-
     <div class="form-group">
         <input class="form-control" formControlName="duration">
         <label>:משך טיסה </label>
         <errors [error]="MyFormGrup.controls.duration"></errors>
     </div>
-
     <div class="form-group">
         <input class="form-control" formControlName="landing">
         <label>:זמן נחיתה </label>
         <errors [error]="MyFormGrup.controls.landing"></errors>
     </div>
-
     <div class="form-group">
         <input class="form-control" formControlName="takeoff">
         <label>:זמן המראה </label>
         <errors [error]="MyFormGrup.controls.takeoff"></errors>
     </div>
-
     <div class="form-group">
         <input class="form-control" formControlName="place">
         <label>:מספר מקומות </label>
         <errors [error]="MyFormGrup.controls.place"></errors>
     </div>
-
     <br><br>
-
     <button style="width: 20%; margin: auto;" (click)="postaddFliyts()" [disabled]="MyFormGrup.invalid"
         class=" btn-primary btn-lg btn-block">הוסף טיסה</button>
 </form>
-
-
-
-
 <!-- שינוי טיסה -->
 <br><br>
 <form style="width: 70% ;margin: auto;  border: solid 3px blue; padding: 10px;border-radius: 15px; 
 " #putform [formGroup]="updetFliytForm" class="form-inline" action="/action_page.php" hidden>
-
     <div class="form-group">
         <input class="form-control" formControlName="prise">
         <label>:מחיר </label>
     </div>
-
     <div class="form-group">
         <input class="form-control" formControlName="company">
         <label>:חברת טיסה </label>
     </div>
-
     <div class="form-group">
         <label for="example-date-input" class="col-2 col-form-label"></label>
         <input class="form-control" type="date" id="example-date-input" formControlName="depart">
         <label>:תאריך </label>
     </div>
-
     <div class="form-group">
         <select class="form-control" id="sel1" formControlName="target" style="width: 200px;">
             <option *ngFor="let coutr of countryList" [value]="coutr">
@@ -166,7 +160,6 @@
         <label>יעד</label>
         <img src="../../../assets/unnamed (3).png" alt="">
     </div>
-
     <div class="form-group">
         <select class="form-control" id="sel2" formControlName="origin" style="width: 200px;">
             <option *ngFor="let coutr of countryList" [value]="coutr">
@@ -176,54 +169,53 @@
         <label>מוצא</label>
         <img src="../../../assets/unnamed (2).png" alt="">
     </div>
-
     <div class="form-group">
         <input class="form-control" formControlName="duration">
         <label>:משך טיסה </label>
     </div>
-
     <div class="form-group">
         <input class="form-control" formControlName="landing">
         <label>:זמן נחיתה </label>
     </div>
-
     <div class="form-group">
         <input class="form-control" formControlName="takeoff">
         <label>:זמן המראה </label>
     </div>
-
     <div class="form-group">
         <input class="form-control" formControlName="place">
         <label>:מספר מקומות </label>
     </div>
-
     <br><br>
-
     <button style="width: 20%; margin: auto;" (click)="postupdateFliyts(this.updetFliytForm.value.numFlyght)"
         class=" btn-primary btn-lg btn-block">שנה טיסה</button>
 </form>
-
-
 <!-- רשימת נוסעים לטיסה מסוימת -->
-<div *ngFor="let i of passengers">
-    <button type="button" class="btn btn-primary" (click)="deletepassenger(i.id)">הסרת נוסע</button>
-    <button type="button" class="btn btn-primary" (click)="updatepassenger(i)">שינוי פרטי נוסע</button>
-
-    {{i.firstname}}
-    {{i.OrderNumber}}
-    {{i.sex}}
-    {{i.lastname}}
-    {{i.flighitNumber1}}
-    {{i.flighitNumber2}}
-    {{i.birthDate}}
-</div>
-
-
+<table style="width:70%; margin: auto;">
+    <tr>
+        <th colspan="2">פונקציות</th>
+        <th>מספר הזמנה</th>
+        <th>מספר טיסה חזור</th>
+        <th>מספר טיסה הלוך</th>
+        <th>מין</th>
+        <th>תאריך לידה</th>
+        <th> שם משפחה</th>
+        <th> שם פרטי</th>
+    </tr>
+    <tr *ngFor="let i of passengers">
+        <td><button type="button" class="btn btn-primary" (click)="deletepassenger(i.id)">הסרת נוסע</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="updatepassenger(i)">שינוי פרטי נוסע</button></td>
+        <td>{{i.OrderNumber}}</td>
+        <td>{{i.flighitNumber2}}</td>
+        <td>{{i.flighitNumber1}}</td>
+        <td>{{i.sex}}</td>
+        <td>{{i.birthDate}}</td>
+        <td>{{i.lastname}}</td>
+        <td>{{i.firstname}}</td>
+    </tr>
+</table>
 <!-- שינוי נוסע -->
 <br><br>
-
 <form #putformpass [formGroup]="updatepassengerForm" class="form-inline" action="/action_page.php" hidden>
-
     <div class="form-group">
         <select class="form-control" id="sel1" formControlName="sex">
             <option>male</option>
@@ -231,50 +223,38 @@
         </select>
         <label>:מין</label>
     </div>
-
     <div class="form-group">
         <label for="example-date-input" class="col-2 col-form-label"></label>
         <input class="form-control" type="date" value="2011-08-19" id="example-date-input" placeholder="date of birth"
             formControlName="birthDate">
         <label>:תאריך לידה</label>
     </div>
-
     <div class="form-group">
         <input class="form-control" placeholder="last name" formControlName="lastname">
         <label>:שם משפחה</label>
     </div>
-
     <div class="form-group">
         <input type="text" class="form-control" placeholder="first name" formControlName="firstname">
         <label>:שם פרטי</label>
     </div>
-
     <br><br>
     <button style="width: 20%; margin: auto;" (click)="putupdatepassenger(this.updatepassengerForm.value.id)"
         class=" btn-primary btn-lg btn-block">שנה פרטים</button>
-
 </form>
-
-
 <!-- שינוי פרטי מזמין -->
 <form #putorformord [formGroup]="updateorderForm" class="form-inline" action="/action_page.php" hidden>
-
     <div class="form-group">
         <input type="email" class="form-control" placeholder="g-mail" formControlName="email">
         <label>כתובת אימייל</label>
     </div>
-
     <div class="form-group">
         <input type="tel" class="form-control" placeholder="phon Number" formControlName="phonNumber">
         <label> :פלפון</label>
     </div>
-
     <div class="form-group">
         <input class="form-control" placeholder="last name" formControlName="lastname">
         <label>:שם משפחה</label>
     </div>
-
-
     <div class="form-group">
         <input type="text" class="form-control" placeholder="first_name" formControlName="firstname">
         <label>:שם פרטי</label>

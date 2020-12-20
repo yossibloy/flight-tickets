@@ -1,0 +1,8 @@
+table, th, td {
+    border: 1px solid rgb(117, 117, 231);
+    border-collapse: collapse;
+    text-align: center;
+  }
+  th, td {
+    padding: 5px;
+  }
